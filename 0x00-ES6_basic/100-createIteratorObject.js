@@ -2,7 +2,6 @@ export default function createIteratorObject(report) {
   let reportIterator = report;
   reportIterator[Symbol.iterator] = function() {
     let employees = [].concat(...Object.values(reportIterator.allEmployees));
-    console.log(employees);
     let i = -1;
     let done = false;
     return {
@@ -10,7 +9,7 @@ export default function createIteratorObject(report) {
         i += 1;
         if (i == employees.length) {done = true}
         return {value:employees[i], done:done};
-      }
+      };
     };
   };
 
