@@ -7,9 +7,14 @@ export default function createIteratorObject(report) {
     return {
       next() {
         i += 1;
-        if (i == employees.length) {done = true}
-        return {value:employees[i], done:done};
-      };
+        if (i == employees.length) {
+	  done = true
+	}
+        return {
+	  value: employees[i],
+	  done: done,
+	};
+      }
     };
   };
 
