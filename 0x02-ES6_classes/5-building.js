@@ -1,15 +1,10 @@
 export default class Building {
   constructor(sqft) {
+    if (this.constructor !== Building && typeof this.evacuationWarningMessage !== 'function') {
+      throw new Error('Class extending Building must override evacuationWarningMessage');
+    }
     this._sqft = sqft;
-    const missing = Object.getOwnPropertyNames(Building.prototype)
-      .find((name) =>
-        typeof Building.prototype[name] === 'function' && !Object.getPrototypeOf(this).hasOwnProperty(name)
-      );
-    if (missing) throw Error('Class extending Building must override evacuationWarningMessage');
   }
 
   get sqft() { return this._sqft; }
-
-  // abstract
-  evacuationWarningMessage() {}
 }
