@@ -6,6 +6,6 @@ export default class Car {
   }
 
   cloneCar() {
-    return Symbol.for('Car');
+    return new this.constructor();
   }
 }
