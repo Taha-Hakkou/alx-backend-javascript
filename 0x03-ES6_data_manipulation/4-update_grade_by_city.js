@@ -3,11 +3,16 @@ export default function updateStudentGradeByCity(listStudents, city, newGrades) 
     (student) => student.location === city,
   );
   gradedStudents.forEach((student) => {
-    const newGrade = newGrades.find(
-      (x) => x.studentId === student.id,
-    );
+    let grade = 'N/A';
+    for (const newGrade of newGrades) {
+      if (newGrade
+        && newGrade.studentId === student.id
+        && newGrade.grade) {
+        grade = newGrade.grade;
+      }
+    }
     // eslint-disable-next-line no-param-reassign
-    student.grade = newGrade && newGrade.grade ? newGrade.grade : 'N/A';
+    student.grade = grade;
   });
   return gradedStudents;
 }
