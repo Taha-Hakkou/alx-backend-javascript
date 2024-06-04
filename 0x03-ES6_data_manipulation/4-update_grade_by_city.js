@@ -7,7 +7,7 @@ export default function updateStudentGradeByCity(listStudents, city, newGrades) 
       (x) => x.studentId === student.id,
     );
     // eslint-disable-next-line no-param-reassign
-    student.grade = newGrade ? newGrade.grade : 'N/A';
+    student.grade = newGrade && newGrade.grade ? newGrade.grade : 'N/A';
   });
   return gradedStudents;
 }
