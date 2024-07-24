@@ -9,17 +9,16 @@ const port = 1245;
 const app = createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  const reqUrl = url.parse(req.url).pathname;
-  if (reqUrl == "/") {
+  if (req.url === '/') {
     res.end('Hello Holberton School!');
-  } else if (reqUrl == "/students") {
+  } else if (req.url === '/students') {
     console.log('This is the list of our students');
     const csvFile = process.argv[2];
     countStudents(csvFile)
       .then(() => {
-        console.log("Done!");
+        console.log('Done!');
       })
-        .catch((error) => {
+      .catch((error) => {
         console.log(error);
       });
   }
