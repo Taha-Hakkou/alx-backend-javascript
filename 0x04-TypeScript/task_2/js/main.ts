@@ -13,15 +13,15 @@ interface TeacherInterface {
 }
 
 class Director implements DirectorInterface {
-  workFromHome: () => 'Working from home';
-  getCoffeeBreak: () => 'Getting a coffee break';
-  workDirectorTasks: () => 'Getting to director tasks';
+  workFromHome = () => 'Working from home';
+  getCoffeeBreak = () => 'Getting a coffee break';
+  workDirectorTasks = () => 'Getting to director tasks';
 }
 
 class Teacher implements TeacherInterface {
-  workFromHome: () => 'Cannot work from home';
-  getCoffeeBreak: () => 'Cannot have a break';
-  workTeacherTasks: () => 'Getting to work';
+  workFromHome = () => 'Cannot work from home';
+  getCoffeeBreak = () => 'Cannot have a break';
+  workTeacherTasks = () => 'Getting to work';
 }
 
 function createEmployee(salary: number | string): Director | Teacher {
@@ -43,32 +43,37 @@ console.log(createEmployee('$500'));
 
 /************************* 6 *************************/
 
-function isDirector(employee: any): boolean {
+function isDirector(employee: Director | Teacher): boolean {
   return employee instanceof Director;
 }
 
-function executeWork(employee: Director | Teacher) {
-  if (employee instanceof Director) workDirectorTasks();
-  if (employee instanceof Teacher) workTeacherTasks();
+function executeWork(employee: Director | Teacher): void {
+  if (employee instanceof Director) {
+    employee.workDirectorTasks();
+  } else {
+    employee.workTeacherTasks();
+  }
 }
 
-executeWork(createEmployee(200));
+/*
+console.log(executeWork(createEmployee(200)));
 // Getting to work
-executeWork(createEmployee(1000));
+console.log(executeWork(createEmployee(1000)));
 // Getting to director task
+*/
 
 /************************* 7 ************************/
-/*
+
 type Subjects = 'Math' | 'History';
 
-function teachClass(todayClass) {
+function teachClass(todayClass: Subjects) {
   if (todayClass === 'Math') return 'Teaching Math';
   if (todayClass === 'History') return 'Teaching History';
 }
-*/
+
 /*
-teachClass('Math');
+console.log(teachClass('Math'));
 // Teaching Math
-teachClass('History');
+console.log(teachClass('History'));
 // Teaching History
 */

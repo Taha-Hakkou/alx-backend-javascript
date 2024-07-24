@@ -4,8 +4,8 @@ namespace Subjects {
   }
 
   export class Java extends Subjects.Subject{
-    getRequirements() { return 'Here is the list of requirements for Java'; }
-    getAvailableTeacher() {
+    getRequirements(): string { return 'Here is the list of requirements for Java'; }
+    getAvailableTeacher():string {
       if (this.teacher.experienceTeachingJava > 0) {
 	return `Available Teacher: ${this.teacher.firstName}`;
       }
