@@ -48,8 +48,7 @@ const app = createServer((req, res) => {
         res.end();
       })
       .catch((error) => {
-        console.log(error);
-        res.end();
+        res.end(error.message);
       });
   }
 });
