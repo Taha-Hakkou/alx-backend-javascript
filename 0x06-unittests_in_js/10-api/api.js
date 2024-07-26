@@ -10,6 +10,7 @@ app.get('/', (_, res) => {
 });
 
 app.get('/cart/:id(\\d+)?', (_, res) => {
+  const id = req.params.id;
   res.send(`Payment methods for cart ${id}`);
 });
 
