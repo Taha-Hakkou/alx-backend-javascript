@@ -2,14 +2,12 @@
 // Defines the app routes
 import AppController from '../controllers/AppController';
 import StudentsController from '../controllers/StudentsController';
-import app from '../server';
 
-const router = app.Router();
+const routesMapper = (app) => {
+  app.get('/', AppController.getHomepage);
+  app.get('/students', StudentsController.getAllStudents);
+  app.get('/students/:major', StudentsController.getAllStudentsByMajor);
+}
 
-router.get('/', AppController.getHomepage);
-
-router.get('/students', StudentsController.getAllStudents);
-
-router.get('/students/:major', StudentsController.getAllStudentsByMajor);
-
-export default router;
+export default routesMapper;
+module.exports = routesMapper;
